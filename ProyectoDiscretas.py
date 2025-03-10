@@ -56,10 +56,10 @@ def probarCombinaciones(atomos, valores, i, resultados, form): #función para pr
     probarCombinaciones(atomos, valores, i + 1, resultados, form)
 
 def analizarFormula(form): #función para determinar si una fórmula es una tautología, una contingencia o una contradiccón
-    atomos = sorted(set(c for c in form if c.isalpha()))  #obtenemos los átomos únicos
-    resultados = set()  #en este set se guardan los resultados de la evaluación
+    atomos = sorted(set(c for c in form if c in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')) #se obtienen solo los caracteres o letas (átomos) de la fórmula
+    resultados = set() #conjunto donde se almacenan los resultados de evaluar la fórmula con distintas combinaciones de valores de verdad
 
-    probarCombinaciones(atomos, [False] * len(atomos), 0, resultados, form) #generamos todas las combinaciones posibles y las evaluamos
+    probarCombinaciones(atomos, [False] * len(atomos), 0, resultados, form)   #generamos todas las combinaciones posibles y las evaluamos
 
     if resultados == {True}: #si en todas la pruebas da verdadero o 1, entonces se retorna 1, ya que es una tautología
         return 1 
