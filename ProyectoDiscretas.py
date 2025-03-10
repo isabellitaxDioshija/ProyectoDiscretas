@@ -2,7 +2,7 @@ from sys import stdin
 
 v = dict() # Diccionario para almacenar los valores de verdad
 
-def str_to_list(s: str, ignore: set) -> list[str]: #función para convertir una cadena de texto en una lista de caracteres ignorando los espacios que están en ignore
+def str_to_list(s: str, ignore: set) -> list[str]: #función para convertir una cadena de texto en una lista de caracteres ignorando los espacios en blanco que están en ignore
     lista = [] #lista vacia para guardar los caracteres
     for caracter in s: #bucle para recorrer cada caracter de la cadena de texto
         if caracter not in ignore: 
@@ -55,7 +55,7 @@ def probarCombinaciones(atomos, valores, i, resultados, form): #función para pr
     valores[i] = True #luego, se intenta con el átomo con valor verdadero (1)
     probarCombinaciones(atomos, valores, i + 1, resultados, form)
 
-def analizar_formula(form): #función para determinar si una fórmula es una tautología, una contingencia o una contradiccón
+def analizarFormula(form): #función para determinar si una fórmula es una tautología, una contingencia o una contradiccón
     atomos = sorted(set(c for c in form if c.isalpha()))  #obtenemos los átomos únicos
     resultados = set()  #en este set se guardan los resultados de la evaluación
 
@@ -94,6 +94,6 @@ def main(): #función preincipal
         S = int(stdin.readline().strip()) #se leen el número de fórmulas que se van a probar, eliminando los espacios y se convierte la entrada a un entreo
         for i in range(S): #bucle para analizar cada una de las formulas que se ingresen
             form = str_to_list(stdin.readline().strip(), {' '}) #se convierte la fórmula en una lista sin espacios
-            print(analizar_formula(form)) #llamamos la función analizar_formula(form) y se imprime el resultado (1 si es tautología, 0 si es contradicción o -1 si es contingencia)
+            print(analizarFormula(form)) #llamamos la función analizar_formula(form) y se imprime el resultado (1 si es tautología, 0 si es contradicción o -1 si es contingencia)
 
 main() #llamamos a la función main para ejecutar el programa
